@@ -9,9 +9,9 @@ projects:
       Commando:
         src: ACM-PocketMine-MP/Commando/Commando
         version: ^3.2.1
-      libpmform:
-        src: CzechPMDevs/libpmform/libpmform
-        version: ^1.1.0
+      PMForms:
+        src: dktapps-pm-pl/pmforms/pmforms
+        version: ^2.1.0
       VanillaGenerator:
         src: CzechPMDevs/VanillaGenerator/VanillaGenerator
         version: ^0.0.6
