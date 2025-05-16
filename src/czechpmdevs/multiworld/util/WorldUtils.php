@@ -135,28 +135,47 @@ class WorldUtils {
 	}
 
 	public static function duplicateWorld(string $worldName, string $duplicateName): void {
-		if(!Server::getInstance()->getWorldManager()->isWorldGenerated($worldName)) {
+		$server = Server::getInstance();
+		$worldManager = $server->getWorldManager();
+	
+		if (!$worldManager->isWorldGenerated($worldName)) {
 			throw new AssumptionFailedError("World \"$worldName\" is not generated.");
 		}
-		if(Server::getInstance()->getWorldManager()->isWorldLoaded($worldName)) {
-			WorldUtils::getWorldByNameNonNull($worldName)->save();
+	
+		if ($worldManager->isWorldLoaded($worldName)) {
+			try {
+				WorldUtils::getWorldByNameNonNull($worldName)->save();
+			} catch (\Throwable $e) {
+				$server->getLogger()->warning("Could not save world \"$worldName\" before duplication: " . $e->getMessage());
+			}
 		}
-
-		mkdir(Server::getInstance()->getDataPath() . "/worlds/$duplicateName");
-
-		$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(Server::getInstance()->getDataPath() . "worlds/$worldName", FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST);
-		/** @var SplFileInfo $fileInfo */
-		foreach($files as $fileInfo) {
-			if($filePath = $fileInfo->getRealPath()) {
-				if($fileInfo->isFile()) {
-					@copy($filePath, str_replace($worldName, $duplicateName, $filePath));
-				} else {
-					mkdir(str_replace($worldName, $duplicateName, $filePath));
+	
+		$src = $server->getDataPath() . "worlds/$worldName";
+		$dst = $server->getDataPath() . "worlds/$duplicateName";
+	
+		if (!is_dir($dst)) {
+			mkdir($dst, 0777, true);
+		}
+	
+		$files = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator($src, FilesystemIterator::SKIP_DOTS),
+			RecursiveIteratorIterator::SELF_FIRST
+		);
+	
+		foreach ($files as $fileInfo) {
+			$from = $fileInfo->getRealPath();
+			$to = str_replace($worldName, $duplicateName, $from);
+	
+			if ($fileInfo->isDir()) {
+				if (!is_dir($to)) {
+					mkdir($to, 0777, true);
 				}
+			} else {
+				@copy($from, $to);
 			}
 		}
 	}
-
+	
 	/**
 	 * @return bool Returns if the world was unloaded with the function.
 	 * If it has already been unloaded before calling this function, returns FALSE!
