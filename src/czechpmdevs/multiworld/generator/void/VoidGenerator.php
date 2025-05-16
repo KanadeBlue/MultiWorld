@@ -37,7 +37,17 @@ class VoidGenerator extends Generator {
 		$chunk = $world->getChunk($chunkX, $chunkZ);
 
 		if($chunkX === 16 && $chunkZ === 16) {
-			$chunk->setBlockStateId(0, 64, 0, VanillaBlocks::GRASS()->getStateId());
+			$chunk->setBlockStateId(0, 0, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 1, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 2, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 3, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 4, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 5, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 6, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 7, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 8, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 9, 0, VanillaBlocks::BEDROCK()->getStateId());
+			$chunk->setBlockStateId(0, 10, 0, VanillaBlocks::BEDROCK()->getStateId());
 		}
 	}
 
