@@ -36,19 +36,14 @@ class VoidGenerator extends Generator {
 		/** @phpstan-var Chunk $chunk */
 		$chunk = $world->getChunk($chunkX, $chunkZ);
 
-		if($chunkX === 16 && $chunkZ === 16) {
-			$chunk->setBlockStateId(0, 0, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 1, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 2, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 3, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 4, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 5, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 6, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 7, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 8, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 9, 0, VanillaBlocks::BEDROCK()->getStateId());
-			$chunk->setBlockStateId(0, 10, 0, VanillaBlocks::BEDROCK()->getStateId());
+		if ($chunkX === 16 && $chunkZ === 16) {
+			for ($x = -1; $x <= 1; $x++) {
+				for ($z = -1; $z <= 1; $z++) {
+					$chunk->setBlockStateId($x, 60, $z, VanillaBlocks::BEDROCK()->getStateId());
+				}
+			}
 		}
+		
 	}
 
 	public function populateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
