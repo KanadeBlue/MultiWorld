@@ -10,8 +10,8 @@
     "czechpmdevs/libpmform": "*",
     "muqsit/vanillagenerator": "*",
     "muqsit/simplepackethandler": "*",
-    "cortexpe/commando": "*",
-    "pocketmine/pocketmine-mp": "^5.0.0"
+    "cortexpe/commando": "dev-master#2919418d6eeab6a23b319f6e3e4565c9c19a9e93",
+    "pocketmine/pocketmine-mp": "^5.36.0"
   },
   "require-dev": {
     "phpstan/phpstan": "^1.10.18"
@@ -27,7 +27,7 @@
     },
     {
       "type": "vcs",
-      "url": "https://github.com/ACM-PocketMine-MP/Commando/"
+      "url": "https://github.com/Swim-Services/Commando-MV/"
     },
     {
       "type": "package",
@@ -44,7 +44,9 @@
   ],
   "autoload": {
     "psr-4": {
-      "": ["src"]
+      "": [
+        "src"
+      ]
     }
   }
 }

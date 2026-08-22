@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-const OUTPUT_FILE = "out\MultiWorld.phar";
+const OUTPUT_FILE = "out/MultiWorld.phar";
 const WORKSPACE_DIRECTORY = "out";
 
 const COMPOSER_DIR = "vendor";
@@ -35,7 +35,7 @@ const INCLUDED_VIRIONS = [
 
 const PLUGIN_DESCRIPTION_FILE = "plugin.yml";
 
-chdir("..");
+chdir(dirname(__DIR__));
 if(file_exists("out")) {
 	out("Cleaning workspace...");
 	cleanDirectory(WORKSPACE_DIRECTORY);

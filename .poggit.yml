@@ -7,8 +7,8 @@ projects:
     icon: icon.png
     libs:
       Commando:
-        src: ACM-PocketMine-MP/Commando/Commando
-        version: ^3.2.1
+        src: Swim-Services/Commando-MV/Commando
+        version: ^3.2.0
       PMForms:
         src: dktapps-pm-pl/pmforms/pmforms
         version: ^2.1.0
